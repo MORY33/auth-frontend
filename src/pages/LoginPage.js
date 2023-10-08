@@ -17,7 +17,9 @@ const LoginPage = () => {
 
   return (
     <>
-      <Button onClick={() => googleLogin()}>Sign in with Google 🚀 </Button>
+      <Button variant="outlined" onClick={() => googleLogin()}>
+        Sign in with Google 🚀{" "}
+      </Button>
     </>
   );
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 import { config } from "../utils/config";
 import { getAccessToken } from "./getAccessToken";
 
-const authToken = getAccessToken();
+const authToken = await getAccessToken();
 
 const axiosInstance = axios.create({
   baseURL: config.baseUrl,
