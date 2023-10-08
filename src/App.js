@@ -31,7 +31,7 @@ const App = () => {
               }
             />
             <Route
-              path="/dashboard"
+              path="/"
               element={
                 <RequireAuth>
                   <Dashboard />
