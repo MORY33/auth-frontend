@@ -1,26 +1,23 @@
 import { Button } from "@mui/material";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router";
+import { handleGoogleLoginSuccess } from "../utils/auth";
+import { useUser } from "../contexts/UserContext";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { login } = useUser();
   const googleLogin = useGoogleLogin({
     flow: "implicit",
-
     onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
-      const tokens = await axios.post("http://localhost:8000/exchange-token/", {
-        code: codeResponse.access_token,
-      });
-
-      console.log(tokens);
+      handleGoogleLoginSuccess(codeResponse, login, navigate);
     },
     onError: (errorResponse) => console.log(errorResponse),
   });
 
   return (
     <>
-      <Button onClick={() => googleLogin()}>Sign in with Google 🚀 </Button>;{" "}
+      <Button onClick={() => googleLogin()}>Sign in with Google 🚀 </Button>
     </>
   );
 };
